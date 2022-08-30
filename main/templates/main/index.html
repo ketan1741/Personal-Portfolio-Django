@@ -1,0 +1,451 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+
+<section style="margin-bottom:-50px" >
+  <div class="bannerSection">
+    <div class="container">
+      <div class="row g-4 g-md-3  align-items-center">
+        <div class="col-md-auto order-md-last">
+          <div class="bannerUserImg">
+            <img src="{{me.userprofile.avatar.url}}" alt="{{me.first_name|title}} {{me.last_name|title}} avatar">
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="bannerContent">
+            <h1 class="xlTitle pb-3" style="text-align:center; color:#902982">Hello World!! <br>I'm {{me.first_name|title}} {{me.last_name|title}}</h1>
+            <h1 class="xlTitle pb-3" style="text-align:center; overflow:hidden ; color:#052ca3; margin-top:-20px"><span class="auto-type"></span> Enthusiast</h1>
+            <p class = "quote" style="opacity: 0.8;">❝   <b>{{me.userprofile.quote|linebreaksbr}}</b>   ❞</p>
+            <p style="line-height:5%"></br></p>
+            <p style= "text-align:justify;">{{me.userprofile.bio|linebreaksbr}}</p>
+            <div class="bannerBtnCol">
+              <div class="row">
+                <div class="col-auto">
+                  <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download Resume</a>
+                </div>
+                <div class="col-auto">
+                  <a href="{% url 'main:contact' %}" class="btn btnOutline">Hire Me!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+          <script>
+            var typed = new Typed(".auto-type", {
+              strings: ["AI Theory", "Optimization Theory", "ML-DevOps", "Data Science", "AI-NLP", "ML-DSP", "Vision", "Multimodal"],
+              typeSpeed: 25,
+              backSpeed: 15,
+              loop: true,
+              startDelay: 300,
+              backDelay: 2000,
+              showCursor: false
+              
+            })
+          </script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sectionSpace pt-0" >
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md" style="margin-top:50px; margin-right:130px" >
+          <h4 class="smTitle pb-3"><b>Coding Skills</b></h4>
+          <div class="progressCol">
+            <div class="progressCard">
+              {% for sk in me.userprofile.skills.all %}
+              {% if sk.is_coding_skill %}
+              <div class="progressCol">
+                {% if sk.image %}
+                <div class="ksIconCol" style="float:left">
+                  <img src="{{sk.image.url}}" alt="..." width="25" height="25">
+                </div>
+              {% endif %}
+                <span class="progressLbl" style="padding-left:10px; padding-top:2px">{{sk.name}}</span>
+                <div class="row g-2 align-items-center">
+                  <div class="col">
+                    <div class="progress progressStyle">
+                      <div class="progress-bar" role="progressbar" style="width: {{sk.score}}%;" aria-valuenow="{{sk.score}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span class="pLbl">{{sk.score}}%</span>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-auto" style="margin-top:50px">
+          <div class="keySkillCol1" >
+            <h4 class="smTitle pb-3"><b>Libraries and Frameworks</b></h4>
+            
+            {% for sk in me.userprofile.skills.all %}
+            
+            {% if sk.is_framework %}
+            <div class="keySkillCard" >
+              {% if sk.image %}
+              <div class="ksIconCol" style="float:left">
+                <img src="{{sk.image.url}}" alt="..." width="30" height="30">
+              </div>
+              {% endif %}
+              <span class="ksText" style="padding-left:38px; padding-top:3px;">{{sk.name}}</span>
+            </div>
+            {% endif %}
+          
+            {% endfor %}
+          </div>
+        </div>
+        
+
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section style="margin-top:-50px">
+  <div class="sectionSpace pt-0">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-auto" style="margin-top:50px">
+          <div class="keySkillCol">
+            <h4 class="smTitle pb-3"><b>Web Technologies</b></h4>
+            {% for sk in me.userprofile.skills.all %}
+            {% if sk.is_webtech %}
+            <div class="keySkillCard">
+              {% if sk.image %}
+              <div class="ksIconCol" style="float:left">
+                <img src="{{sk.image.url}}" alt="..." width="30" height="30">
+              </div>
+              {% endif %}
+              <span class="ksText" style="padding-left:38px; padding-top:3px">{{sk.name}}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-md-auto" style="margin-top:50px;">
+          <div class="keySkillCol2">
+            <h4 class="smTitle pb-3"><b>Key Interests</b></h4>
+            {% for sk in me.userprofile.skills.all %}
+            {% if sk.is_key_interest %}
+            <div class="keySkillCard">
+              {% if sk.image %}
+              <div class="ksIconCol" style="float:left">
+                <img src="{{sk.image.url}}" alt="..." width="30" height="30">
+              </div>
+              {% endif %}
+              <span class="ksText" style="padding-left:38px; padding-top:3px">{{sk.name}}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section >
+  
+  <div class="container" style="border-top:3px dotted #0d1772; border-bottom:3px dotted #0d1772; margin-top:40px; margin-bottom:20px">
+    <div class="testimonialCol" style="margin-top:-30px;">
+      <h4 class="smText regular d-block" style="font-family:serif;font-size:22px;letter-spacing:2.2px;word-spacing:7px;margin-top:30px;color:#0d1772"><B>EDUCATION</b></h4>
+      <div class="testimonialSlider">
+        <div class="swiper testimonialSwiper">
+          <div class="swiper-wrapper">
+            {% for t in testimonials %}
+            {% if t.is_active %}
+            <div class="swiper-slide">
+              <div class="testimonialCard">
+                <div class="row align-items-center">
+                  <div class="col-sm-auto">
+                    <div class="tImgCol">
+                      <img src="{{t.thumbnail.url}}" alt="..." width="40" height="40">
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="tContentCol">
+                      <h4 class="mdTitle bold">{{t.name}}</h4>
+                      <h4 class="xsTitle" style="font-family:sans; opacity:0.7"><b>{{t.start_year}} - {{t.end_year}}</b><h4>
+                      <h4 class="xsTitle" style="margin-top:-15px; font-family:serif" ></br>{{t.program}} in <i> <b>{{t.major}}</i> </b></h4>
+                      <h4><span class="dateLbl" style="letter-spacing:2px">CGPA &nbsp-->&nbsp {{t.cgpa}}</span><h4>
+                      <p>{{t.quote}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+          </div>
+          <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+          <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  
+  <div class="sectionSpaceSm1 lightBg">
+    <div class="container">
+      <div class="row pb-3">
+        <div class="col">
+          <h4 class="smText regular" style="font-family:serif;font-size:22px;letter-spacing:2.2px;word-spacing:7px;margin-top:30px;color:#0d1772"><B>INTERNSHIPS & RESEARCH EXPERIENCE</B></h4>
+        </div>
+
+      </div>
+      <div class="sliderOuter1">
+        <div class="swiper experienceSlider">
+          <div class="swiper-wrapper">
+            {% for e in experiences %} 
+            {% if e.is_active %}
+            <div class="swiper-slide" >
+              <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title">
+                  <a style="margin-bottom:0px">{{e.name}}</a>
+                </h4>
+                
+                  <p style:"text-align:center; font-size:14px">{{e.from_date}}  -  {{e.to_date}}</p>
+                
+                <ul class="cardOptionCol">
+                  <li><b>{{e.title}}</b></li>
+                  <li><u><a href="{{e.certificate_link}}" target="_blank" rel="noopener noreferrer"><span class="dateLbl">Certificate</span></a></u></li>
+                </ul>
+                
+                <p >{{e.description|linebreaks}}</p>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+          </div>
+        </div>            
+        <div class="exp-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+        <div class="exp-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        <div class="swiper-pagination1 swiperPaginationStyle posInitial" style="text-align:center"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section>
+  <div class="sectionSpaceSm lightBg" >
+    <div class="container" style="margin-top:20px;">
+      <div class="row pb-3">
+        <div class="col">
+          <h4 class="smText regular" style="font-family:serif;font-size:22px;letter-spacing:2.2px;word-spacing:7px; color:#0d1772"><b>RECENT RESEARCH PUBLICATIONS</b></h4>
+        </div>
+        <div class="col-auto">
+          <a href="{% url 'main:blogs' %}" class="simpleLink"><u>View all</u></a>
+        </div>
+      </div>
+      <div class="row g-3">
+      {% for b in blogs %}
+      {% if b.is_active and b.to_display %}
+        <div class="col-lg-6">
+          <div class="cardStyle1">
+            <h4 class="mdTitle cs1Title"><a href="{{b.doi_link}}" target="_blank" rel="noopener noreferrer" >{{b.name}}</a></h4>
+                          
+            <b><a href="{{b.doi_link}}" target="_blank" rel="noopener noreferrer" style="float:left; text-align:left; text-decoration:underline;"><span class="dateLbl">DOI Link</span></a></b>
+            <b><a href="{{b.research_gate_link}}" target="_blank" rel="noopener noreferrer" style="float:left; padding-left:30px; margin-bottom: 15px; text-decoration:underline;"><span class="dateLbl">ResearchGate Link</span></a></b>
+            <p style="text-align:right">{{b.timestamp.date}}</p>
+                        
+            <ul class="cardOptionCol">
+              <li style="text-align:left"><b>{{b.author}}</b></li>
+            </ul>
+            <p>{{b.description|safe}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section>
+  
+  <div class="sectionSpaceSm lightBg">
+    <div class="container" style="margin-bottom:50px">
+      <div class="row pb-3">
+        <div class="col">
+          <h4 class="smText regular" style="font-family:serif;font-size:22px;letter-spacing:2.2px;word-spacing:7px;margin-top:0px; color:#0d1772"><B>CERTIFICATIONS</B></h4>
+        </div>
+
+      </div>
+      <div class="sliderOuter">
+        <div class="swiper certificatesSlider">
+          <div class="swiper-wrapper">
+            {% for c in certificates %}
+            {% if c.is_active %}
+            <div class="swiper-slide" >
+              <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title">
+                  <a href="{{c.course_link}}" target="_blank" rel="noopener noreferrer" style="margin-bottom:30px">{{c.title}}</a>
+                </h4>
+                <ul class="cardOptionCol">
+                  <li><b>{{c.name}}</b></li>
+                  <li><u><a href="{{c.verification_link}}" target="_blank" rel="noopener noreferrer"><span class="dateLbl">Verify</spn></a></u></li>
+                </ul>
+                <p >{{c.description|linebreaks}}</p>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+          </div>
+        </div>            
+        <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+        <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section>
+  <div class="sectionSpace" >
+    <div class="container" >
+      <div class="portfolioCol" >
+        <div class="row pb-3">
+          <div class="col">
+            <h4 class="smText regular" style="font-family:serif;font-size:22px;letter-spacing:2.2px;word-spacing:7px;margin-top:0px; color:#0d1772"><B>PERSONAL MINI PROJECTS</B></h4>
+          </div>
+          <div class="col-auto">
+            <a href="{% url 'main:portfolios' %}" class="simpleLink"><u>View all</u></a>
+          </div>
+        </div>
+        {% for p in portfolio %}
+        {% if p.is_active %}
+        <div class="portfolioCard">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-auto">
+              {% if not p.show_git %}
+              <div class="portfolioImgCol">
+                <a href="{% url 'main:portfolio' slug=p.slug %}"><img src="{{p.image.url}}" height="120" width="200" alt="..."></a>
+              </div>
+              {% endif %}
+
+              {% if p.show_git %}
+              <div class="portfolioImgCol">
+                <a href="{{p.git_link}}" target="_blank" rel="noopener noreferrer"><img src="{{p.image.url}}" height="120" width="200" alt="..."></a>
+              </div>
+              {% endif %}
+
+            </div>
+            <div class="col-md">
+              <div class="portfolioContentCol">
+                {%if not p.show_git%}
+                <h4 class="lgTitle"><a href="{% url 'main:portfolio' slug=p.slug %}">{{p.name}}</a></h4>
+                {% endif %}
+
+                {%if p.show_git%}
+                <h4 class="lgTitle"><a href="{{p.git_link}}" target="_blank" rel="noopener noreferrer">{{p.name}}</a></h4>
+                {% endif %}
+
+                <ul class="portfolioOption">
+                  {% if not p.show_git %}
+                  <li><span class="dateLbl" style="margin-top:15px"><a href="{% url 'main:portfolio' slug=p.slug %}">View Details</a></span></li>
+                  {% endif %}
+
+                  {% if p.show_git %}
+                  <li><span class="dateLbl" style="margin-top:15px"><a href="{{p.git_link}}" target="_blank" rel="noopener noreferrer" >View Details</a></span></li>
+                  {% endif %}
+
+                </ul>
+                <p>{{p.description|linebreaksbr}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        </br>
+        {% endfor %}
+        
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}
+<!-- ================================
+End Content
+================================= -->
