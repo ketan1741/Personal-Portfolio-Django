@@ -59,7 +59,7 @@ class ContactView(generic.FormView):
 
   
 		try:
-			send_mail("Django Resume App - "+subj, final_message, 'ramanetiketan.work@gmail.com', ['ramanetiketan.work@gmail.com'])
+			send_mail("Django Resume App - "+subj, final_message, 'from_mail', ['to_mail'])
 			form.save()
 			messages.success(self.request, 'Thank you! I will be in touch soon.')
 			return super().form_valid(form)
