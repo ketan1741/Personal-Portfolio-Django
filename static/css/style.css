@@ -349,7 +349,7 @@ a, .btn {
 
 .keySkillCol2 {
   width: 300px;
-  margin-left: 170px;
+  margin-left: 180px;
 }
 
 .pLbl {
@@ -585,14 +585,12 @@ body.navToggleActive {
 
   .keySkillCol2 {
     width: 300px;
-    margin-left: 170px;
+    margin-left: 180px;
   }
 }
+
+
 @media (min-width:992px) {
-
-
-
-
 
   .headerCol .container-fluid {
     padding-left: 30px;
@@ -600,9 +598,10 @@ body.navToggleActive {
   }
   .keySkillCol2 {
     width: 300px;
-    margin-left: 170px;
+    margin-left: 180px;
   }
 }
+
 @media (min-width:1200px) {
   .headerCol .container-fluid {
     padding-left: 55px;
@@ -610,7 +609,7 @@ body.navToggleActive {
   }
   .keySkillCol2 {
     width: 300px;
-    margin-left: 170px;
+    margin-left: 180px;
   }
 }
 
@@ -648,7 +647,7 @@ body.navToggleActive {
   }
   .keySkillCol2 {
     width: 300px;
-    margin-left: 170px;
+    margin-left: 180px;
   }
 }
 
@@ -704,9 +703,8 @@ body.navToggleActive {
   }
 
   .keySkillCol2 {
-  	width: 300px;
-    margin-left: 0px;
-    margin: auto;
+  	width: 250px;
+    margin-left: 160px;
   }
 
   .cs1Title {
@@ -773,6 +771,11 @@ body.navToggleActive {
   	max-width: 890px;
   }
 
+  .keySkillCol2 {
+  	width: 300px;
+    margin-left: 0px;
+    margin: auto;
+  }
   
   .bannerUserImg {
   	margin-left: 0;

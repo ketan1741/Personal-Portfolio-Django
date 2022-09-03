@@ -13,12 +13,17 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -45,9 +50,7 @@ INSTALLED_APPS = [
     'main'
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://ketan-personal-portfolio.herokuapp.com'
-]
+
 
 
 MIDDLEWARE = [
@@ -137,7 +140,7 @@ STATICFILES_DIRS = [
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/mediafiles/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 # Default primary key field type
