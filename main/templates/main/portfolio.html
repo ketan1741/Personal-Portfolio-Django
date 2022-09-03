@@ -59,13 +59,13 @@ Start Content
             <div class="pCol">
               {% if not obj.show_git %}
               <a href="{% url 'main:portfolio' slug=obj.slug %}" >
-              <img src="{{obj.image.url}}" alt="..." class="pImg" style="margin-bottom:30px">
+              <img src="{%static obj.image_filename %}" alt="..." class="pImg" style="margin-bottom:30px">
               </a>
               {% endif %}
 
               {% if obj.show_git %}
               <a href="{{obj.git_link}}" target="_blank" rel="noopener noreferrer">
-              <img src="{{obj.image.url}}" alt="..." class="pImg" style="margin-bottom:30px">
+              <img src="{%static obj.image_filename %}" alt="..." class="pImg" style="margin-bottom:30px">
               </a>
               {% endif %}
 

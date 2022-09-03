@@ -65,13 +65,15 @@ class ContactView(generic.FormView):
 			return super().form_valid(form)
 						
    
-		except BadHeaderError:
-			return HttpResponse('Invalid Email ID.')
+		except:
+			form.save()
+			messages.success(self.request, 'Thank you! I will be in touch soon.')
+			return super().form_valid(form)
 
 
 
 	def form_invalid(self, form):
-		messages.error(self.request, 'Invalid Email ID :(')
+		messages.error(self.request, 'Please try again. Invalid Email ID :(')
 		return super().form_invalid(form)
 
 
